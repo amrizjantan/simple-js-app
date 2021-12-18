@@ -98,9 +98,28 @@ function showModal(pokemon) {
     };
 
  })();  
+ pokemonRepository.loadList().then(function() {
+  document
+    .querySelector('.search-pokemon')
+    .addEventListener('submit', function(event) {
+      event.preventDefault();
+      let query = document.querySelector('#myInput').value;
+      document.querySelector('.pokemon-list').innerHTML = '';
+      if (query === '') {
+        pokemonRepository.getAll().forEach(function(pokemon) {
+          pokemonRepository.addListItem(pokemon);
+        });
+      } else {
+        pokemonRepository.getAll().forEach(function(pokemon) {
+          if (pokemon.name.indexOf(query) > -1) {
+            pokemonRepository.addListItem(pokemon);
+          }
+        });
+      }
+    });
 
 pokemonRepository.loadList().then(function(){
     pokemonRepository.getAll().forEach(function(pokemon){
     pokemonRepository.addListItem(pokemon);
     });
-})
+})})
