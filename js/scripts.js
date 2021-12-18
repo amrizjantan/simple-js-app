@@ -119,8 +119,8 @@ function showModal(pokemon) {
       }
     });
 
-pokemonRepository.loadList().then(function(){
+
     pokemonRepository.getAll().forEach(function(pokemon){
     pokemonRepository.addListItem(pokemon);
     });
-})})
+})
